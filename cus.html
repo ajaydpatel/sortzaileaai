@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Contact Us • Sortzailea AI</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Agrandir Font Fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir'), local('Agrandir-Regular');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir Bold'), local('Agrandir-Bold');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir Black'), local('Agrandir-Black');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== COLOR PALETTE =====
+       Wheat:  #f5deb3 / #f5e6c8 / #faf0dc
+       White:  #ffffff
+       Black:  #000000 / #111111 / #1a1a1a
+    ============================ */
+
+    /* ===== HEADER ===== */
+    .main-header {
+      background: #ffffff;
+      border-bottom: 1px solid #f5deb3;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2.5rem;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1350px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: #000000;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #f5deb3;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.4rem 0;
+      letter-spacing: 0.3px;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #f5deb3;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      opacity: 0.7;
+    }
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #000000;
+    }
+
+    @media (max-width: 900px) {
+      .main-header {
+        padding: 0.9rem 1.5rem;
+      }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        border-radius: 0 0 20px 20px;
+        border-bottom: 2px solid #f5deb3;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      background: #faf0dc;
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: #f5deb3;
+      border-radius: 50%;
+      top: -100px;
+      right: -80px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #f5deb3;
+      border-radius: 50%;
+      bottom: -60px;
+      left: -50px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-label {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #000000;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+
+    .page-title {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #000000;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-title .highlight {
+      background: #000000;
+      color: #f5deb3;
+      padding: 0 0.5rem;
+    }
+
+    .page-subtitle {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      color: #333333;
+      font-weight: 500;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .divider-center {
+      width: 60px;
+      height: 4px;
+      background: #000000;
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.3rem;
+      }
+      .page-hero {
+        padding: 3.5rem 1.5rem;
+      }
+    }
+
+    /* ===== SECTION STYLES ===== */
+    .section-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #000000;
+      opacity: 0.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-heading {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #000000;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+
+    .section-heading .highlight {
+      background: #f5deb3;
+      padding: 0 0.4rem;
+    }
+
+    .section-desc {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: #f5deb3;
+      margin: 0.5rem 0 2rem;
+      border-radius: 2px;
+    }
+
+    /* ===== CONTACT GRID ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ===== CONTACT INFO CARDS ===== */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 20px;
+      padding: 1.8rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: #000000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .info-icon {
+      width: 55px;
+      height: 55px;
+      background: #f5deb3;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #000000;
+      flex-shrink: 0;
+    }
+
+    .info-content h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    .info-content p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .info-content a {
+      color: #000000;
+      text-decoration: none;
+      border-bottom: 1px solid #f5deb3;
+      transition: 0.2s;
+    }
+
+    .info-content a:hover {
+      border-bottom-color: #000000;
+    }
+
+    /* ===== SOCIAL LINKS ===== */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: #faf0dc;
+      border: 1.5px solid #f5deb3;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #000000;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: #000000;
+      color: #f5deb3;
+      border-color: #000000;
+    }
+
+    /* ===== GOOGLE FORM WRAPPER ===== */
+    .form-wrapper {
+      background: #ffffff;
+      border: 2px solid #f5deb3;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+      position: relative;
+    }
+
+    .form-header {
+      background: #000000;
+      padding: 1.8rem 2rem;
+      text-align: center;
+    }
+
+    .form-header h3 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #f5deb3;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-header p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #cccccc;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .google-form-container {
+      width: 100%;
+      min-height: 750px;
+      position: relative;
+      background: #ffffff;
+    }
+
+    .google-form-container iframe {
+      width: 100%;
+      height: 750px;
+      border: none;
+      display: block;
+    }
+
+    /* Loading state */
+    .form-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      z-index: 2;
+    }
+
+    .loading-spinner {
+      width: 45px;
+      height: 45px;
+      border: 3px solid #f5deb3;
+      border-top: 3px solid #000000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .form-loading p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .google-form-container {
+        min-height: 850px;
+      }
+      .google-form-container iframe {
+        height: 850px;
+      }
+    }
+
+    /* ===== MAP / OFFICES SECTION ===== */
+    .offices-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .office-card {
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .office-card:hover {
+      border-color: #000000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .office-icon {
+      font-size: 2.5rem;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+
+    .office-card h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 0.5rem;
+    }
+
+    .office-card p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 500;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ===== FAQ PREVIEW ===== */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      transition: 0.3s;
+    }
+
+    .faq-item:hover {
+      border-color: #000000;
+    }
+
+    .faq-item h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: #000000;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #f5deb3;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .cta-section p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #cccccc;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #f5deb3;
+      color: #000000;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 1rem 2.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.4s ease;
+      border: 2px solid #f5deb3;
+      cursor: pointer;
+    }
+
+    .btn-cta:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #000000;
+      color: #f5deb3;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-col h4 {
+      color: #f5deb3;
+      margin-bottom: 1.3rem;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #cccccc;
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #f5deb3;
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 3rem auto 0;
+      border-top: 1px solid rgba(245, 222, 179, 0.2);
+      padding-top: 1.8rem;
+      text-align: center;
+      color: #999999;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .footer-logo {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #f5deb3;
+      margin-bottom: 1rem;
+    }
+
+    .btn-outline-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 2px solid #f5deb3;
+      color: #f5deb3;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      padding: 0.7rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .btn-outline-light:hover {
+      background: #f5deb3;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+          <img src="Picsart_24-11-10_20-24-24-533.png" width="60px" height="60"> 
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About us</a></li>
+        <li><a href="services.html">Service</a></li>
+        <li><a href="#">Platform</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="cus.html" class="active">Contact us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <p class="page-label">Get In Touch</p>
+        <h1 class="page-title">Let's <span class="highlight">Talk</span></h1>
+        <div class="divider-center"></div>
+        <p class="page-subtitle">
+          Have a project in mind? Fill out the form below and our team will get back to you within 24 hours.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION WITH GOOGLE FORM ===== -->
+    <section class="section-container">
+      <div class="contact-grid">
+        <!-- Left: Contact Info -->
+        <div class="contact-info">
+          <div>
+            <p class="section-label">Contact Information</p>
+            <h2 class="section-heading" style="font-size:2rem;">Reach Out <span class="highlight">to Us</span></h2>
+            <div class="divider"></div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-content">
+              <h4>Email</h4>
+              <p><a href="mailto:infosortzaileatechnology@gmail.com">infosortzaileatechnology@gmail.com</a></p>
+              <p style="font-size:0.85rem; margin-top:0.2rem;">For general inquiries & partnerships</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div class="info-content">
+              <h4>Phone</h4>
+              <p><a href="tel:+919876543210">+91 7877158243 </a></p>
+              <p style="font-size:0.85rem; margin-top:0.2rem;">Mon-Fri, 9AM-6PM IST</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-content">
+              <h4>Global Office</h4>
+              <p>INDIA</p>
+              <p style="font-size:0.85rem; margin-top:0.2rem;">Serving clients worldwide</p>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div>
+            <h4 style="font-family:'Agrandir','Plus Jakarta Sans',sans-serif; font-weight:800; margin-bottom:0.8rem; color:#000000;">Follow Us</h4>
+            <div class="social-links">
+              <a href="https://LinkedIn.com/company/sortzaileatechnology" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://Twitter.com/@sortzailea_AI" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://Instagram.com/sortzailea.ai" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Google Form -->
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h3><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send Us a Message</h3>
+            <p>Fill the form below — we respond within 24 hours</p>
+          </div>
+          <div class="google-form-container" id="formContainer">
+            <!-- Loading Spinner -->
+            <div class="form-loading" id="formLoading">
+              <div class="loading-spinner"></div>
+              <p>Loading form...</p>
+            </div>
+            <!-- Google Form iframe -->
+            <iframe 
+              id="googleFormFrame"
+              src="https://docs.google.com/forms/d/e/1FAIpQLScvRfuGQAHjOYPL3WfPBVYSOC_8BLch0rYj-EkEM8bKOGZAkQ/viewform?usp=embedded"
+              title="Contact Us Google Form"
+              allow="camera; microphone; autoplay; encrypted-media;"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+              loading="lazy"
+              onload="hideLoader()"
+              onerror="showError()"
+            >
+            </iframe>
+          </div>
+          <!-- Fallback link -->
+          <div style="text-align:center; padding:1rem; background:#faf0dc; display:none;" id="formFallback">
+            <p style="font-family:'Agrandir','Plus Jakarta Sans',sans-serif; font-weight:600; color:#000000;">
+              <i class="fas fa-external-link-alt"></i> 
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScvRfuGQAHjOYPL3WfPBVYSOC_8BLch0rYj-EkEM8bKOGZAkQ/viewform?usp=dialog" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 style="color:#000000; text-decoration:underline;">
+                Open form in new tab
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUR OFFICES ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <p class="section-label">Our Locations</p>
+      <h2 class="section-heading">Global <span class="highlight">Offices</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Three strategic locations to serve our clients across time zones.</p>
+      
+      <div class="offices-grid">
+        <div class="office-card">
+          <div class="office-icon"><i class="fas fa-building"></i></div>
+          <h4>Ahmedabad (HQ)</h4>
+          <p>
+            thaltej ,Ahmedabad, gujarat, India
+          </p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-heading">Frequently <span class="highlight">Asked Questions</span></h2>
+      <div class="divider"></div>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4><i class="fas fa-question-circle" style="color:#f5deb3; margin-right:0.5rem;"></i> What is your typical response time?</h4>
+          <p>We respond to all inquiries within 24 hours during business days. For urgent requests, please call us directly.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fas fa-question-circle" style="color:#f5deb3; margin-right:0.5rem;"></i> Do you offer free consultations?</h4>
+          <p>Yes! We offer a free 30-minute consultation to understand your project requirements and suggest the best approach.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fas fa-question-circle" style="color:#f5deb3; margin-right:0.5rem;"></i> What industries do you serve?</h4>
+          <p>We specialize in autonomous vehicles, drones, defence, warehouse robotics, agriculture, and medical robotics.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fas fa-question-circle" style="color:#f5deb3; margin-right:0.5rem;"></i> How do you ensure data security?</h4>
+          <p>We use air-gapped environments, SOC2-compliant processes, and zero-trust architecture for all client data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+      <h2>Ready to Start Your Project?</h2>
+      <p>Partner with Sortzailea AI for world-class data annotation, simulation, and physical AI solutions.</p>
+      <a href="#" class="btn-cta" onclick="document.getElementById('googleFormFrame').scrollIntoView({behavior:'smooth'}); return false;">
+        Fill the Form Above <i class="fas fa-arrow-up"></i>
+      </a>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Sortzailea AI</div>
+        <p style="color:#cccccc; font-weight:500;">Behind the intelligence machine.</p>
+        <a href="#" class="btn-outline-light">Contact us <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="footer-col">
+       <h4>Menu</h4>
+        <a href="home.html">Home</a>
+        <a href="aboutus.html">About us</a>
+        <a href="services.html">Service</a>
+        <a href="#">Platform</a>
+        <a href="#">Blog</a>
+        <a href="cus.html">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Data Annotation</h4>
+        <a href="cus.html">Image Annotation</a>
+        <a href="cus.html">Video Annotation</a>
+        <a href="cus.html">3D Point Cloud</a>
+        <a href="cus.html">Semantic Segmentation</a>
+        <a href="cus.html">LiDAR Labeling</a>
+        <a href="cus.html">Sensor Fusion</a>
+      </div>
+      <div class="footer-col">
+        <h4>Simulation</h4>
+        <a href="cus.html">Synthetic Data</a>
+        <a href="cus.html">Digital Twins</a>
+        <a href="cus.html">Environment Generation</a>
+        <a href="cus.html">RLHF Testing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="color:#cccccc;"><i class="fas fa-envelope"></i> infosortzaileatechnology@gmail.com</p>
+        <p style="color:#cccccc;"><i class="fas fa-phone"></i> +91 7877158243</p>
+        <p style="color:#cccccc;"><i class="fas fa-map-marker-alt"></i> india</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p> Copyright © 2026 Sortzailea AI</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Mobile menu toggle
+      const hamburger = document.getElementById('hamburgerBtn');
+      const navMenu = document.getElementById('navMenu');
+      hamburger?.addEventListener('click', () => {
+        navMenu?.classList.toggle('active');
+      });
+      navMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            navMenu.classList.remove('active');
+          }
+        });
+      });
+
+      // Hide loader when iframe loads
+      window.hideLoader = function() {
+        const loader = document.getElementById('formLoading');
+        if (loader) {
+          loader.style.display = 'none';
+        }
+      };
+
+      // Show fallback if iframe fails
+      window.showError = function() {
+        const loader = document.getElementById('formLoading');
+        const fallback = document.getElementById('formFallback');
+        if (loader) loader.style.display = 'none';
+        if (fallback) fallback.style.display = 'block';
+      };
+
+      // Fallback timeout (if iframe doesn't load in 10 seconds)
+      setTimeout(() => {
+        const loader = document.getElementById('formLoading');
+        const fallback = document.getElementById('formFallback');
+        if (loader && loader.style.display !== 'none') {
+          loader.style.display = 'none';
+          if (fallback) fallback.style.display = 'block';
+        }
+      }, 10000);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Sortzailea AI • Behind The Intelligence Machine</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Agrandir Font via CDN (similar alternative + @font-face fallback) -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== AGRANDIR FONT FALLBACK ===== */
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir'), local('Agrandir-Regular');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir Bold'), local('Agrandir-Bold');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Agrandir';
+      src: local('Agrandir Black'), local('Agrandir-Black');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== COLOR PALETTE =====
+       Wheat:  #f5deb3 / #f5e6c8 / #faf0dc
+       White:  #ffffff
+       Black:  #000000 / #111111 / #1a1a1a
+    ============================ */
+
+    /* ===== HEADER & MENU BAR ===== */
+    .main-header {
+      background: #ffffff;
+      border-bottom: 1px solid #f5deb3;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1350px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: #000000;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #f5deb3;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #0c0c0c;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.4rem 0;
+      letter-spacing: 0.3px;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #f5deb3;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-menu a:hover {
+      color: #000000;
+      opacity: 0.7;
+    }
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #000000;
+      transition: 0.3s;
+    }
+
+    .hamburger:hover {
+      color: #f5deb3;
+    }
+
+    @media (max-width: 900px) {
+      .main-header {
+        padding: 0.9rem 1.5rem;
+      }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        border-radius: 0 0 20px 20px;
+        border-bottom: 2px solid #f5deb3;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #ffffff;
+      isolation: isolate;
+    }
+
+    /* Wheat accent shapes */
+
+
+
+    .hero-bg-shapes {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shape-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: #f5deb3;
+      opacity: 0.3;
+      animation: shapeFloat 14s infinite ease-in-out;
+    }
+
+    .shape-circle-1 {
+      width: 500px;
+      height: 500px;
+      top: -200px;
+      right: -150px;
+      animation-delay: 0s;
+    }
+
+    .shape-circle-2 {
+      width: 350px;
+      height: 350px;
+      bottom: -100px;
+      left: -80px;
+      animation-delay: -5s;
+      opacity: 0.2;
+    }
+
+    .shape-circle-3 {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 60%;
+      animation-delay: -3s;
+      opacity: 0.2;
+    }
+
+    @keyframes shapeFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -25px) scale(1.08); }
+      50% { transform: translate(-15px, 20px) scale(0.94); }
+      75% { transform: translate(-25px, -15px) scale(1.04); }
+    }
+
+    /* Grid pattern */
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Animated dots */
+    .dots-container {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #000000;
+      border-radius: 50%;
+      animation: dotFloat 10s infinite ease-in;
+      opacity: 0;
+    }
+
+    .dot:nth-child(1) { left: 8%; top: 70%; animation-delay: 0s; }
+    .dot:nth-child(2) { left: 20%; top: 25%; animation-delay: 2s; width: 4px; height: 4px; }
+    .dot:nth-child(3) { left: 40%; top: 75%; animation-delay: 4s; }
+    .dot:nth-child(4) { left: 55%; top: 15%; animation-delay: 1.5s; width: 5px; height: 5px; }
+    .dot:nth-child(5) { left: 70%; top: 65%; animation-delay: 6s; }
+    .dot:nth-child(6) { left: 82%; top: 35%; animation-delay: 3s; width: 4px; height: 4px; }
+    .dot:nth-child(7) { left: 15%; top: 50%; animation-delay: 5.5s; }
+    .dot:nth-child(8) { left: 60%; top: 80%; animation-delay: 7s; width: 3px; height: 3px; }
+
+    @keyframes dotFloat {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      15% { opacity: 0.8; }
+      30% { transform: translateY(-50px) scale(1.3); opacity: 0.6; }
+      60% { transform: translateY(-120px) scale(0.8); opacity: 0.2; }
+      100% { transform: translateY(-200px) scale(0); opacity: 0; }
+    }
+
+    /* Rotating ring */
+    .ring-wrapper {
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .ring {
+      width: 300px;
+      height: 300px;
+      border: 2px dashed #f5deb3;
+      border-radius: 50%;
+      animation: rotateRing 25s infinite linear;
+      opacity: 0.5;
+    }
+
+    .ring-inner {
+      width: 200px;
+      height: 200px;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateRing 18s infinite linear reverse;
+    }
+
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      max-width: 850px;
+       }
+
+    .hero-badge {
+      display: inline-block;
+      background: #f5deb3;
+      border: 1.5px solid #000000;
+      padding: 0.5rem 1.6rem;
+      border-radius: 50px;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 2rem;
+      animation: pulseBadge 2.5s infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 222, 179, 0.6); }
+      50% { box-shadow: 0 0 0 18px rgba(245, 222, 179, 0); }
+    }
+
+    .hero-title {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      color: #000000;
+      letter-spacing: -1.5px;
+    }
+
+    .hero-title .accent {
+      color: #000000;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: #f5deb3;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .hero-subtitle {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      color: #333333;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #000000;
+      color: #f5deb3;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 1rem 2.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.4s ease;
+      border: 2px solid #000000;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #f5deb3;
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-contact:hover::before {
+      left: 0;
+    }
+
+    .btn-contact:hover {
+      color: #000000;
+      border-color: #000000;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      .ring-wrapper {
+        display: none;
+      }
+      .shape-circle-1 {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    /* ===== SECTION STYLES ===== */
+    section {
+      position: relative;
+      z-index: 5;
+    }
+
+    .section-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #000000;
+      margin-bottom: 0.8rem;
+      opacity: 0.6;
+    }
+
+    .section-heading {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #000000;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+
+    .section-heading .highlight {
+      background: #f5deb3;
+      padding: 0 0.4rem;
+    }
+
+    .section-desc {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: #f5deb3;
+      margin: 0.5rem 0 2rem;
+      border-radius: 2px;
+    }
+
+    /* ===== SERVICES SLIDER ===== */
+    .slider-container {
+      display: flex;
+      gap: 1.8rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0.3rem 2rem;
+      scrollbar-width: thin;
+      scrollbar-color: #f5deb3 #f9f9f9;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .slider-container::-webkit-scrollbar-track {
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+    .slider-container::-webkit-scrollbar-thumb {
+      background: #f5deb3;
+      border-radius: 10px;
+    }
+
+    .service-card {
+      min-width: 300px;
+      flex: 0 0 auto;
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 24px;
+      padding: 2.2rem 1.8rem;
+      scroll-snap-align: start;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #000000;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #000000;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: #000000;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* ===== ABOUT US ===== */
+    .about-card {
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 28px;
+      padding: 2.8rem;
+      }
+
+    .about-text {
+      max-height: 90px;
+      overflow: hidden;
+      transition: max-height 0.7s ease;
+      color: #333333;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .about-text.expanded {
+      max-height: 800px;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      background: #ffffff;
+      border: 2px solid #000000;
+      color: #000000;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      padding: 0.6rem 2.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .toggle-btn:hover {
+      background: #000000;
+      color: #f5deb3;
+    }
+
+    /* ===== SERVICE AREA BOXES ===== */
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .area-card {
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      position: relative;
+      transition: all 0.4s;
+    }
+
+    .area-card:hover {
+      border-color: #000000;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    }
+
+    .area-img-corner {
+      position: absolute;
+      top: -22px;
+      right: 22px;
+      width: 65px;
+      height: 65px;
+      background: #ffffff;
+      border: 2px solid #f5deb3;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #000000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      /* 👉 Image ke liye: background-image: url('your-image.jpg'); background-size: cover; */
+    }
+
+    .area-card h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      margin-top: 1.5rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #000000;
+    }
+
+    .area-card p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* ===== HOW WE WORK / WORK PROCESS ===== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 24px;
+      transition: 0.4s;
+      position: relative;
+    }
+
+    .process-step:hover {
+      border-color: #000000;
+    }
+
+    .process-icon {
+      font-size: 3rem;
+      color: #000000;
+      margin-bottom: 1.2rem;
+    }
+
+    .process-step h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #000000;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 500;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(245, 222, 179, 0.5);
+      line-height: 1;
+    }
+
+    /* ===== OUT OF THE WORLD THINGS ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1.8rem;
+      background: #ffffff;
+      border: 1.5px solid #f5deb3;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .feature-item:hover {
+      border-color: #000000;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      color: #000000;
+      flex-shrink: 0;
+    }
+
+    .feature-item h4 {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #000000;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-item p {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #000000;
+      color: #f5deb3;
+      padding: 4rem 2rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-col h4 {
+      color: #f5deb3;
+      margin-bottom: 1.3rem;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #cccccc;
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #f5deb3;
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 3rem auto 0;
+      border-top: 1px solid rgba(245, 222, 179, 0.2);
+      padding-top: 1.8rem;
+      text-align: center;
+      color: #999999;
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .footer-logo {
+      font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #f5deb3;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .section-heading {
+        font-size: 1.8rem;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    }
+ .leo {
+      background: #f5f5f2;
+      border: 2px dashed #f5deb3;
+         font-family: 'Agrandir', 'Plus Jakarta Sans', sans-serif;
+      border-radius: 28px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: #141413;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leo::after {
+      content: '';
+      position: absolute;
+      font-size: 4rem;
+      opacity: 0.6;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="main-header">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="Picsart_24-11-10_20-24-24-533.png" width="60px" height="60"> 
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About us</a></li>
+        <li><a href="services.html">Service</a></li>
+        <li><a href="#">Platform</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="cus.html">Contact us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section">
+      <div class="hero-bg-shapes">
+        <div class="shape-circle shape-circle-1"></div>
+        <div class="shape-circle shape-circle-2"></div>
+        <div class="shape-circle shape-circle-3"></div>
+      </div>
+      <div class="grid-pattern"></div>
+      <div class="dots-container">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="ring-wrapper">
+        <div class="ring"></div>
+        <div class="ring-inner"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge"> OUT OF THIS WORLD  </div>
+        <h1 class="hero-title">
+          WE'RE BEHIND THE<br>
+          <span class="accent">INTELLIGENCE MACHINE</span>
+        </h1>
+        <p class="hero-subtitle">
+          Empowering autonomous systems with precision data annotation, simulation, and robotics intelligence for drone, defence, and beyond.
+        </p>
+        <a href="cus.html" class="btn-contact">
+          Contact us <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES SLIDER ===== -->
+    <section class="section-container">
+      <p class="section-label">What We Do </p>
+      <h2 class="section-heading">Data Annotation & <span class="highlight">Simulation for Physical AI</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">End-to-end data solutions powering the next generation of intelligent machines.</p>
+       <a href="#" class="btn-contact">
+          swip<i class="fas fa-arrow-right"></i>
+        </a>
+      <div class="slider-container">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-tags"></i></div>
+          <h3>Data Annotation</h3>
+          <p>High-precision 2D/3D bounding boxes, semantic segmentation, LiDAR labeling for autonomous systems.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-cubes"></i></div>
+          <h3>Simulation</h3>
+          <p>Photorealistic synthetic environments & digital twins for safe AI training and validation.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-robot"></i></div>
+          <h3>Robotics AI</h3>
+          <p>RLHF testing, sensor fusion pipelines, and perception models for physical robots.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Defence & Drone</h3>
+          <p>Classified-grade annotation for UAVs, surveillance, and autonomous defence applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT US ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <div class="about-card">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-heading">About <span class="highlight">Sortzailea AI</span></h2>
+        <div class="divider"></div>
+        <div class="about-text" id="aboutContent">
+          <p><strong>Sortzailea AI</strong> stands at the intersection of data and physical intelligence. We are a deep-tech company specializing in data annotation, simulation, and AI infrastructure for robotics, autonomous vehicles, drones, and defence systems.</p>
+          <p>Our team of engineers and AI specialists has delivered over 20 million precisely annotated data points across LiDAR, camera, radar, and sensor fusion modalities. We build custom synthetic environments that mirror real-world complexity, enabling our clients to train and validate their AI models with unprecedented accuracy.</p>
+          <p>From RLHF (Reinforcement Learning from Human Feedback) testing to end-to-end data pipelines, we provide the critical layer that transforms raw sensor data into actionable machine intelligence. Partner with us to accelerate your journey from prototype to production-grade physical AI.</p>
+        </div>
+        <button class="toggle-btn" id="toggleAboutBtn">
+          More <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== SERVICE AREAS ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <p class="section-label">Industries</p>
+      <h2 class="section-heading">Our <span class="highlight">Service Areas</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Specialized solutions across critical domains of physical AI.</p>
+      <div class="area-grid">
+        <div class="area-card">
+          <div class="area-img-corner"><i class="fas fa-car-side"></i></div>
+          <h4>Autonomous Vehicles</h4>
+          <p>Scene understanding, object tracking, and edge-case simulation for self-driving cars.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-img-corner"><i class="fas fa-robot"></i></div>
+          <h4>Robotics</h4>
+          <p>We're train Humanoied robotics for work in real life environments Home,wharehouse fectory ect.</p>
+        </div>
+        <div class="area-card">
+          <div class="area-img-corner"><i class="fas fa-shield-virus"></i></div>
+          <h4>Defence & Security</h4>
+          <p>Secure data labeling for surveillance, threat detection, and military robotics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW WE WORK ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <p class="section-label">Process</p>
+      <h2 class="section-heading">How We <span class="highlight">Work</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">A streamlined pipeline from raw data to production-ready AI.</p>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">01</div>
+          <div class="process-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <h4>Data Collection</h4>
+          <p>Multi-sensor data ingestion from cameras, LiDAR, radar, and drone payloads.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">02</div>
+          <div class="process-icon"><i class="fas fa-tags"></i></div>
+          <h4>Labeling & Annotation</h4>
+          <p>Human-in-the-loop precision labeling with AI-assisted quality assurance.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">03</div>
+          <div class="process-icon"><i class="fas fa-flask"></i></div>
+          <h4>RLHF Testing</h4>
+          <p>Reinforcement Learning from Human Feedback for robust model alignment.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">04</div>
+          <div class="process-icon"><i class="fas fa-rocket"></i></div>
+          <h4>Deployment</h4>
+          <p>Validated datasets delivered for training, simulation, and real-world inference.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUT OF THE WORLD THINGS ===== -->
+    <section class="section-container" style="padding-top:2rem;">
+      <p class="section-label">Why Sortzailea AI</p>
+      <h2 class="section-heading">Our Out of the <span class="highlight">World Things</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Capabilities that set us apart in the physical AI ecosystem.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-brain"></i></div>
+          <div>
+            <h4>AI-Assisted Annotation</h4>
+            <p>Proprietary ML models pre-label data, reducing turnaround by 60% while maintaining 99.5% accuracy.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div>
+          <div>
+            <h4>Synthetic Data Engine</h4>
+            <p>Photorealistic 3D environments generate millions of labeled frames for edge-case training.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <div>
+            <h4>Defence-Grade Security</h4>
+            <p>Air-gapped annotation environments and SOC2-compliant data handling for classified projects.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+          <div>
+            <h4>Multi-Domain Expertise</h4>
+            <p>From autonomous driving to drone fleets and warehouse robotics — one partner, all domains.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="leo">
+<h4>Out Of  </h4>
+<img src="Untitled design.png" alt="no image" width="600" height="400">
+<h4> This World</h4>
+  </div>
+  
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">Sortzailea AI</div>
+        <p style="color:#cccccc; font-weight:500;">Behind the intelligence machine.</p>
+      </div>
+          <p class="hero-subtitle">
+       <a href="cus.html" class="btn-contact">
+          Contact us <i class="fas fa-arrow-right"></i>
+        </a>
+        </p>
+      <div class="footer-col">
+       <h4>Menu</h4>
+        <a href="home.html">Home</a>
+        <a href="aboutus.html">About us</a>
+        <a href="services.html">Service</a>
+        <a href="#">Platform</a>
+        <a href="#">Blog</a>
+        <a href="cus.html">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Data Annotation</h4>
+        <a href="cus.html">Image Annotation</a>
+        <a href="cus.html">Video Annotation</a>
+        <a href="cus.html">3D Point Cloud</a>
+        <a href="cus.html">Semantic Segmentation</a>
+        <a href="cus.html">LiDAR Labeling</a>
+        <a href="cus.html">Sensor Fusion</a>
+      </div>
+      <div class="footer-col">
+        <h4>Simulation</h4>
+        <a href="cus.html">Synthetic Data</a>
+        <a href="cus.html">Digital Twins</a>
+        <a href="cus.html">Environment Generation</a>
+        <a href="cus.html">RLHF Testing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="color:#cccccc;"><i class="fas fa-envelope"></i> infosortzaileatechnology@gmail.com</p>
+        <p style="color:#cccccc;"><i class="fas fa-phone"></i> +91 7877158243</p>
+        <p style="color:#cccccc;"><i class="fas fa-map-marker-alt"></i> india</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>copyright© 2026 Sortzailea AI </p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Mobile menu toggle
+      const hamburger = document.getElementById('hamburgerBtn');
+      const navMenu = document.getElementById('navMenu');
+      hamburger?.addEventListener('click', () => {
+        navMenu?.classList.toggle('active');
+      });
+
+      // Close menu on link click (mobile)
+      navMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            navMenu.classList.remove('active');
+          }
+        });
+      });
+
+      // About expand/collapse
+      const aboutDiv = document.getElementById('aboutContent');
+      const toggleBtn = document.getElementById('toggleAboutBtn');
+      if (toggleBtn && aboutDiv) {
+        toggleBtn.addEventListener('click', () => {
+          aboutDiv.classList.toggle('expanded');
+          if (aboutDiv.classList.contains('expanded')) {
+            toggleBtn.innerHTML = 'Less <i class="fas fa-chevron-up"></i>';
+          } else {
+            toggleBtn.innerHTML = 'More <i class="fas fa-chevron-down"></i>';
+          }
+        });
+      }
+
+      // Smooth scroll for contact button
+      const contactBtn = document.querySelector('.btn-contact');
+      contactBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.footer')?.scrollIntoView({ behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>
